@@ -87,7 +87,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func updateBitcoinData(json : JSON) {
         
         if let bitcoinResult = json["ask"].double {
-            bitcoinPriceLabel.text = "\(currencySymbol[index]) \(bitcoinResult)"
+            let price = "\(currencySymbol[index]) \(bitcoinResult)"
+            
+            if price.count > 11 {
+                bitcoinPriceLabel.adjustsFontSizeToFitWidth = true
+                bitcoinPriceLabel.minimumScaleFactor = 0.5
+            }
+            
+            bitcoinPriceLabel.text = price
+            
         }
         
     }
